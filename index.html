@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelo Site | GP Tech</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background-color: #FDFBF8; }
+        .product-card { transition: transform 0.1s; }
+        .product-card:active { transform: scale(0.97); }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="pb-32 relative">
+
+    <div class="w-full shadow-md">
+        <img src="banner.jpg" class="w-full h-auto block" alt="Banner da Padaria" onerror="this.src='https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop';">
+    </div>
+
+    <div class="flex p-4 justify-center gap-4 sticky top-0 bg-[#FDFBF8] z-40">
+        <button id="btn-paes" onclick="switchTab('paes')" class="bg-orange-500 text-white flex-1 py-3 rounded-xl font-bold shadow-md border border-orange-600 transition-colors">Pães</button>
+        <button id="btn-roscas" onclick="switchTab('roscas')" class="bg-white text-gray-400 flex-1 py-3 rounded-xl font-bold shadow-sm border border-gray-100 transition-colors">Roscas</button>
+    </div>
+
+    <div id="tab-paes" class="p-4 space-y-3">
+        
+        <div class="bg-white rounded-2xl shadow-sm product-card border border-gray-100 flex p-2">
+            <div class="w-24 h-24 bg-orange-50 rounded-xl flex items-center justify-center text-5xl flex-shrink-0 shadow-inner">🥖</div>
+            <div class="pl-4 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="font-bold text-sm text-gray-800 leading-tight">Pão Francês</h3>
+                    <p class="text-orange-500 font-black text-lg">R$ 1,50 <span class="text-[10px] text-gray-400 font-normal">unid</span></p>
+                </div>
+                <div class="flex items-center justify-end">
+                    <div class="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-100">
+                        <button onclick="changeQty('pao_frances', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400 text-lg">-</button>
+                        <span id="qty-pao_frances" class="w-8 text-center font-black text-sm">0</span>
+                        <button onclick="changeQty('pao_frances', 1, 'Pão Francês', 1.50)" class="w-8 h-8 flex items-center justify-center font-bold text-orange-500 text-lg">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl shadow-sm product-card border border-gray-100 flex p-2">
+            <div class="w-24 h-24 bg-yellow-50 rounded-xl flex items-center justify-center text-5xl flex-shrink-0 shadow-inner">🌽</div>
+            <div class="pl-4 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="font-bold text-sm text-gray-800 leading-tight">Pão de Milho</h3>
+                    <p class="text-orange-500 font-black text-lg">R$ 1,50 <span class="text-[10px] text-gray-400 font-normal">unid</span></p>
+                </div>
+                <div class="flex items-center justify-end">
+                    <div class="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-100">
+                        <button onclick="changeQty('pao_milho', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400 text-lg">-</button>
+                        <span id="qty-pao_milho" class="w-8 text-center font-black text-sm">0</span>
+                        <button onclick="changeQty('pao_milho', 1, 'Pão Caseiro de Milho', 1.50)" class="w-8 h-8 flex items-center justify-center font-bold text-orange-500 text-lg">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="tab-roscas" class="p-4 space-y-3 hidden">
+        
+        <div class="bg-white rounded-2xl shadow-sm product-card border border-gray-100 flex p-2">
+            <div class="w-24 h-24 bg-amber-50 rounded-xl flex items-center justify-center text-5xl flex-shrink-0 shadow-inner">🍩</div>
+            <div class="pl-4 flex flex-col justify-between flex-1">
+                <div>
+                    <h3 class="font-bold text-sm text-gray-800 leading-tight">Rosca de Côco</h3>
+                    <p class="text-orange-500 font-black text-lg">R$ 10,00 <span class="text-[10px] text-gray-400 font-normal">unid</span></p>
+                </div>
+                <div class="flex items-center justify-end">
+                    <div class="flex items-center bg-gray-50 rounded-xl p-1 border border-gray-100">
+                        <button onclick="changeQty('rosca_coco', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400 text-lg">-</button>
+                        <span id="qty-rosca_coco" class="w-8 text-center font-black text-sm">0</span>
+                        <button onclick="changeQty('rosca_coco', 1, 'Rosca de Côco', 10.00)" class="w-8 h-8 flex items-center justify-center font-bold text-orange-500 text-lg">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="px-5 mt-4">
+        <div class="bg-gray-900 text-white p-6 rounded-3xl shadow-xl">
+            <h4 class="font-black mb-4 uppercase text-[10px] tracking-widest text-orange-400 text-center">Finalizar Pedido</h4>
+            <input id="nome-cliente" type="text" placeholder="Seu Nome" 
+                   class="w-full p-4 bg-gray-800 rounded-2xl mb-3 border-none text-white placeholder-gray-500 text-sm outline-none">
+            
+            <input id="endereco-cliente" type="text" placeholder="Seu Endereço Completo" 
+                   class="w-full p-4 bg-gray-800 rounded-2xl mb-3 border-none text-white placeholder-gray-500 text-sm outline-none">
+
+            <select id="forma-pagamento" class="w-full p-4 bg-gray-800 rounded-2xl border-none text-white text-sm outline-none">
+                <option value="">Forma de Pagamento</option>
+                <option value="Dinheiro">Dinheiro</option>
+                <option value="Pix">Pix</option>
+                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Cartão de Débito">Cartão de Débito</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="fixed bottom-6 left-5 right-5 bg-white h-20 rounded-3xl shadow-2xl flex items-center justify-between px-6 border border-gray-100 z-40">
+        <div onclick="openCart()" class="cursor-pointer active:scale-95 transition-transform flex flex-col justify-center">
+            <div class="flex items-center gap-1">
+                <p class="text-[9px] font-bold text-orange-500 uppercase tracking-widest">🛒 Ver Carrinho</p>
+            </div>
+            <p id="total-carrinho" class="text-xl font-black text-gray-800">R$ 0,00</p>
+        </div>
+        <button onclick="finalizarPedido()" class="bg-orange-500 text-white h-12 px-6 rounded-2xl font-black shadow-lg active:scale-95 transition-all text-sm uppercase">
+            Pedir Agora
+        </button>
+    </div>
+
+    <div id="cart-modal" class="fixed inset-0 bg-black/60 z-[60] hidden flex-col justify-end backdrop-blur-sm">
+        <div class="bg-white w-full rounded-t-3xl p-5 pb-10 max-h-[70vh] flex flex-col shadow-2xl">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-black text-lg text-gray-800">Seu Carrinho</h3>
+                <button onclick="closeCart()" class="text-gray-400 font-bold text-2xl active:scale-90 transition-transform">&times;</button>
+            </div>
+            <div id="cart-items" class="overflow-y-auto flex-1 space-y-3 mb-4">
+                </div>
+            <button onclick="closeCart()" class="w-full bg-gray-100 text-gray-800 py-3 rounded-xl font-bold shadow-sm active:scale-95 transition-transform">
+                Voltar ao Cardápio
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let carrinho = {};
+        let total = 0;
+
+        // Função para alternar as abas
+        function switchTab(tab) {
+            const tabPaes = document.getElementById('tab-paes');
+            const tabRoscas = document.getElementById('tab-roscas');
+            const btnPaes = document.getElementById('btn-paes');
+            const btnRoscas = document.getElementById('btn-roscas');
+
+            if (tab === 'paes') {
+                tabPaes.classList.remove('hidden');
+                tabRoscas.classList.add('hidden');
+                
+                btnPaes.className = "bg-orange-500 text-white flex-1 py-3 rounded-xl font-bold shadow-md border border-orange-600 transition-colors";
+                btnRoscas.className = "bg-white text-gray-400 flex-1 py-3 rounded-xl font-bold shadow-sm border border-gray-100 transition-colors";
+            } else {
+                tabPaes.classList.add('hidden');
+                tabRoscas.classList.remove('hidden');
+                
+                btnRoscas.className = "bg-orange-500 text-white flex-1 py-3 rounded-xl font-bold shadow-md border border-orange-600 transition-colors";
+                btnPaes.className = "bg-white text-gray-400 flex-1 py-3 rounded-xl font-bold shadow-sm border border-gray-100 transition-colors";
+            }
+        }
+
+        // Função para atualizar quantidade e valores
+        function changeQty(id, delta, nome = null, preco = null) {
+            if (!carrinho[id]) {
+                carrinho[id] = { qtd: 0, nome: nome, preco: preco };
+            }
+            carrinho[id].qtd += delta;
+            if (carrinho[id].qtd < 0) carrinho[id].qtd = 0;
+            
+            // Atualiza na tela principal (só se o elemento existir)
+            const qtyElement = document.getElementById('qty-' + id);
+            if (qtyElement) {
+                qtyElement.innerText = carrinho[id].qtd;
+            }
+            
+            total = 0;
+            for (let k in carrinho) {
+                total += carrinho[k].qtd * carrinho[k].preco;
+            }
+            document.getElementById('total-carrinho').innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+            
+            // Atualiza o carrinho aberto em tempo real
+            const modal = document.getElementById('cart-modal');
+            if (!modal.classList.contains('hidden')) {
+                updateCartModal();
+            }
+        }
+
+        // Funções do Modal do Carrinho
+        function openCart() {
+            updateCartModal();
+            const modal = document.getElementById('cart-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeCart() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function updateCartModal() {
+            const container = document.getElementById('cart-items');
+            container.innerHTML = '';
+            let hasItems = false;
+
+            for (let id in carrinho) {
+                if (carrinho[id].qtd > 0) {
+                    hasItems = true;
+                    container.innerHTML += `
+                        <div class="flex justify-between items-center bg-gray-50 p-3 rounded-xl border border-gray-100">
+                            <div>
+                                <p class="font-bold text-sm text-gray-800">${carrinho[id].nome}</p>
+                                <p class="text-orange-500 font-black text-xs">R$ ${(carrinho[id].preco * carrinho[id].qtd).toFixed(2).replace('.', ',')}</p>
+                            </div>
+                            <div class="flex items-center bg-white rounded-xl p-1 border border-gray-200 shadow-sm">
+                                <button onclick="changeQty('${id}', -1)" class="w-8 h-8 flex items-center justify-center font-bold text-gray-400 text-lg">-</button>
+                                <span class="w-8 text-center font-black text-sm">${carrinho[id].qtd}</span>
+                                <button onclick="changeQty('${id}', 1)" class="w-8 h-8 flex items-center justify-center font-bold text-orange-500 text-lg">+</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            if (!hasItems) {
+                container.innerHTML = '<p class="text-center text-gray-400 text-sm py-6">Seu carrinho está vazio.</p>';
+            }
+        }
+
+        // Finalizar Pedido via WhatsApp
+        function finalizarPedido() {
+            const nome = document.getElementById('nome-cliente').value;
+            const endereco = document.getElementById('endereco-cliente').value;
+            const pagamento = document.getElementById('forma-pagamento').value;
+
+            if (total === 0) return alert("Adicione itens no carrinho!");
+            if (!nome || !endereco || !pagamento) return alert("Preencha nome, endereço e forma de pagamento!");
+
+            let msg = `🥖 *NOVO PEDIDO* %0A%0A`;
+            msg += `👤 *Cliente:* ${nome}%0A`;
+            msg += `📍 *Endereço:* ${endereco}%0A`;
+            msg += `💳 *Pagamento:* ${pagamento}%0A`;
+            msg += `────────────────────%0A`;
+            
+            for (let k in carrinho) {
+                if (carrinho[k].qtd > 0) {
+                    msg += `✅ ${carrinho[k].qtd}x ${carrinho[k].nome}%0A`;
+                }
+            }
+
+            msg += `────────────────────%0A`;
+            msg += `💰 *TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*`;
+
+            const numeroPadaria = "5519993405480"; 
+            window.location.href = `https://wa.me/${numeroPadaria}?text=${msg}`;
+        }
+    </script>
+</body>
+</html>
