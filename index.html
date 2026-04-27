@@ -3,10 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modelo Site | GP Tech</title>
+    <title>Padeiro Express | GP Tech</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Essa linha abaixo mata o efeito elástico/pulo no final da tela */
+        html, body { overscroll-behavior-y: none; }
+        
         body { font-family: 'Montserrat', sans-serif; background-color: #FDFBF8; }
         .product-card { transition: transform 0.1s; }
         .product-card:active { transform: scale(0.97); }
